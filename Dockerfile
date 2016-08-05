@@ -13,7 +13,7 @@ RUN apt-get autoremove -y
 RUN apt-get autoclean -y
 RUN apt-get install -y wget
 RUN apt-get clean -y
-RUN apt-get update \
+RUN apt-get update 
 RUN cd /tmp \
 	&& wget http://www.multichain.com/download/multichain-1.0-alpha-22.tar.gz \
 	&& tar -xvzf multichain-1.0-alpha-22.tar.gz \
