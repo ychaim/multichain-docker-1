@@ -22,6 +22,10 @@ RUN cd /tmp \
 	&& cd /tmp \
 	&& rm -Rf multichain*
 
+RUN multichain-util create chain1
+
+CMD multichaind chain1 -daemon
+
 VOLUME /opt/chains
 
-EXPOSE 8333 8332 18333 18332
+EXPOSE 6282 8333 8332 18333 18332
