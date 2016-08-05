@@ -11,6 +11,9 @@ RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get autoremove -y
 RUN apt-get autoclean -y
+RUN apt-get install -y build-essential
+RUN apt-get install -y nodejs
+RUN apt-get install -y npm
 RUN apt-get install -y wget
 RUN apt-get install -y vim
 RUN apt-get clean -y
@@ -24,7 +27,7 @@ RUN cd /tmp \
 	&& rm -Rf multichain*
 
 RUN multichain-util create chain1
-RUN multichaind chain1 -daemon
+#RUN multichaind chain1 -daemon
 
 VOLUME ${WORK_DIR}
 
