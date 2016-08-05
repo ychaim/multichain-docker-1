@@ -1,4 +1,4 @@
-FROM ubuntu:15.10
+FROM ubuntu:16.04
 MAINTAINER Matteo Crippa @ghego20
 
 ENV HOME /root
