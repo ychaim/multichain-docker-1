@@ -24,8 +24,7 @@ RUN cd /tmp \
 	&& rm -Rf multichain*
 
 RUN multichain-util create chain1
-
-CMD multichaind chain1 -daemon
+RUN multichaind chain1 -daemon
 
 VOLUME ${WORK_DIR}
 
