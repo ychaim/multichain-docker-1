@@ -12,6 +12,7 @@ RUN apt-get upgrade -y
 RUN apt-get autoremove -y
 RUN apt-get autoclean -y
 RUN apt-get install -y wget
+RUN apt-get install -y vim
 RUN apt-get clean -y
 RUN apt-get update 
 RUN cd /tmp \
@@ -26,6 +27,6 @@ RUN multichain-util create chain1
 
 CMD multichaind chain1 -daemon
 
-VOLUME /opt/chains
+VOLUME ${WORK_DIR}
 
 EXPOSE 6282 8333 8332 18333 18332
