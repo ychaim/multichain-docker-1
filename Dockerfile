@@ -1,24 +1,27 @@
-FROM ubuntu:xenial
-MAINTAINER Lewis Lambert <lewis.lambert@zserve.co.uk>
+FROM ubuntu:15.10
+MAINTAINER Matteo Crippa @ghego20
 
-ENV TERM xterm
-ENV DEBIAN_FRONTEND noninteractive
+ENV HOME /root
+ENV WORK_DIR /root
 
+# Set WORKDIR
+WORKDIR ${WORK_DIR}
+
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get autoremove -y
+RUN apt-get autoclean -y
+RUN apt-get install -y wget
+RUN apt-get clean -y
 RUN apt-get update \
-	&& apt-get upgrade -q -y \
-	&& apt-get install -q -y wget \
-	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& cd /tmp \
-	&& wget http://www.multichain.com/download/multichain-1.0-alpha-21.tar.gz \
-	&& tar -xvzf multichain-1.0-alpha-21.tar.gz \
-	&& cd multichain-1.0-alpha-21 \
+RUN cd /tmp \
+	&& wget http://www.multichain.com/download/multichain-1.0-alpha-22.tar.gz \
+	&& tar -xvzf multichain-1.0-alpha-22.tar.gz \
+	&& cd multichain-1.0-alpha-22 \
 	&& mv multichaind multichain-cli multichain-util /usr/local/bin \
 	&& cd /tmp \
 	&& rm -Rf multichain*
 
-VOLUME [ "/opt/chains" ]
+VOLUME /opt/chains
 
 EXPOSE 8333 8332 18333 18332
-
-ENTRYPOINT [ "/usr/local/bin/multichaind", "-datadir=/opt/chains" ]
