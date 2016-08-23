@@ -31,7 +31,10 @@ RUN cd /tmp \
 
 # Multichain setup
 RUN multichain-util create chain1
-CMD multichaind chain1 -daemon
+
+
+USER root
+ENTRYPOINT ["/usr/local/bin/multichaind", "chain1", "-daemon"]
 
 # Server POC setup
 #RUN cd ${WORK_DIR}
