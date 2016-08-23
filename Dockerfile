@@ -34,12 +34,4 @@ RUN multichain-util create chain1
 
 
 USER root
-ENTRYPOINT ["/usr/local/bin/multichaind", "chain1", "-daemon"]
-
-# Server POC setup
-#RUN cd ${WORK_DIR}
-#RUN git clone https://github.com/matteocrippa/multichain-nodejs-poc test
-#RUN cd test
-#RUN npm install
-
-#VOLUME ${WORK_DIR}
+CMD multichaind chain1 #-daemon
