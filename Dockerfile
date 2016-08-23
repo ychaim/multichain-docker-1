@@ -22,21 +22,21 @@ RUN apt-get update
 
 # Multichain install
 RUN cd /tmp \
-	&& wget http://www.multichain.com/download/multichain-1.0-alpha-22.tar.gz \
-	&& tar -xvzf multichain-1.0-alpha-22.tar.gz \
-	&& cd multichain-1.0-alpha-22 \
+	&& wget http://www.multichain.com/download/multichain-1.0-alpha-23.tar.gz \
+	&& tar -xvzf multichain-1.0-alpha-23.tar.gz \
+	&& cd multichain-1.0-alpha-23 \
 	&& mv multichaind multichain-cli multichain-util /usr/local/bin \
 	&& cd /tmp \
 	&& rm -Rf multichain*
 
 # Multichain setup
 RUN multichain-util create chain1
-#RUN multichaind chain1 -daemon
+CMD multichaind chain1 -daemon
 
 # Server POC setup
-RUN cd ${WORK_DIR}
-RUN git clone https://github.com/matteocrippa/multichain-nodejs-poc test
-RUN cd test
-RUN npm install
+#RUN cd ${WORK_DIR}
+#RUN git clone https://github.com/matteocrippa/multichain-nodejs-poc test
+#RUN cd test
+#RUN npm install
 
-VOLUME ${WORK_DIR}
+#VOLUME ${WORK_DIR}
