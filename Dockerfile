@@ -37,3 +37,7 @@ RUN multichain-util create chain1
 # Monit setup
 COPY multichain.conf  /etc/init/
 COPY monit-multichain.conf  /etc/monit/
+
+
+# Run monit
+CMD ["/usr/bin/monit", "-I"]
