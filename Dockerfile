@@ -18,14 +18,14 @@ RUN apt-get install -y nodejs
 RUN apt-get install -y npm
 RUN apt-get install -y wget
 RUN apt-get install -y vim
-RUN apt-get install -y monit
-RUN apt-get install -y upstart-sysv
+#RUN apt-get install -y monit
+#RUN apt-get install -y upstart-sysv
 RUN apt-get clean -y
 RUN apt-get update
 
 # Fix initctl
-RUN dpkg-divert --local --rename --add /sbin/initctl
-RUN ln -s /bin/true /sbin/initctl
+#RUN dpkg-divert --local --rename --add /sbin/initctl
+#RUN ln -s /bin/true /sbin/initctl
 
 # Multichain install
 RUN cd /tmp \
@@ -45,6 +45,7 @@ COPY monit-multichain.conf  /etc/monit/
 
 
 # Run monit
-CMD ["/usr/bin/monit", "-I"]
+#CMD ["/usr/bin/monit", "-I"]
+CMD ["multichaind", "chain1", "-rpcallowip=10.211.0.0/16", "-rpcallowip=172.17.0.0/16", "-rpcallowip=192.168.0.0/16", "-rpcport=18333"]
 
 EXPOSE 18333
