@@ -32,7 +32,7 @@ RUN cd /tmp \
 	&& rm -Rf multichain*
 
 # Multichain setup
-RUN multichain-util create chain1
+RUN multichain-util create chain1 -rpcallowip=10.211.0.0/16 -rpcallowip=172.17.0.0/16 -rpcallowip=192.168.0.0/16 -rpcport=18333
 
 # Monit setup
 COPY multichain.conf  /etc/init/
@@ -41,3 +41,5 @@ COPY monit-multichain.conf  /etc/monit/
 
 # Run monit
 CMD ["/usr/bin/monit", "-I"]
+
+EXPOSE 18333
