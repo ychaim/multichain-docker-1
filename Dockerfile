@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:15.04
 MAINTAINER Matteo Crippa @ghego20
 
 ENV PACKAGE_NAME multichain-1.0-alpha-23
@@ -19,9 +19,13 @@ RUN apt-get install -y npm
 RUN apt-get install -y wget
 RUN apt-get install -y vim
 RUN apt-get install -y monit
-RUN apt-get install -y upstart
+RUN apt-get install -y upstart-sysv
 RUN apt-get clean -y
 RUN apt-get update
+
+# Fix initctl
+RUN dpkg-divert --local --rename --add /sbin/initctl
+RUN ln -s /bin/true /sbin/initctl
 
 # Multichain install
 RUN cd /tmp \
