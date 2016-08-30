@@ -19,6 +19,7 @@ RUN apt-get install -y npm
 RUN apt-get install -y wget
 RUN apt-get install -y vim
 RUN apt-get install -y monit
+RUN apt-get install -y upstart
 RUN apt-get clean -y
 RUN apt-get update
 
@@ -35,7 +36,7 @@ RUN cd /tmp \
 RUN multichain-util create chain1 
 
 # Monit setup
-COPY multichain.conf  /etc/init/
+COPY multichain.conf  /etc/init.d/
 COPY monit-multichain.conf  /etc/monit/
 
 
