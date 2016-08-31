@@ -5,6 +5,10 @@ ENV PACKAGE_NAME multichain-1.0-alpha-23
 ENV HOME /root
 ENV WORK_DIR /root
 
+ENV RPC_PORT 18333
+ENV RPC_USER
+ENV RPC_PASSWORD 
+
 # Set WORKDIR
 WORKDIR ${WORK_DIR}
 
@@ -14,18 +18,10 @@ RUN apt-get autoremove -y
 RUN apt-get autoclean -y
 RUN apt-get install -y git
 RUN apt-get install -y build-essential
-RUN apt-get install -y nodejs
-RUN apt-get install -y npm
 RUN apt-get install -y wget
 RUN apt-get install -y vim
-#RUN apt-get install -y monit
-#RUN apt-get install -y upstart-sysv
 RUN apt-get clean -y
 RUN apt-get update
-
-# Fix initctl
-#RUN dpkg-divert --local --rename --add /sbin/initctl
-#RUN ln -s /bin/true /sbin/initctl
 
 # Multichain install
 RUN cd /tmp \
@@ -39,13 +35,6 @@ RUN cd /tmp \
 # Multichain setup
 RUN multichain-util create chain1 
 
-# Monit setup
-COPY multichain.conf  /etc/init/
-COPY monit-multichain.conf  /etc/monit/
+CMD ["multichaind", "chain1", "-rpcallowip=10.211.0.0/16", "-rpcallowip=172.17.0.0/16", "-rpcallowip=192.168.0.0/16", "-rpcport=${RPC_PORT}", "-rpcuser=${RPC_USER}", "-rpcpassword=${RPC_PASSWORD}"]
 
-
-# Run monit
-#CMD ["/usr/bin/monit", "-I"]
-CMD ["multichaind", "chain1", "-rpcallowip=10.211.0.0/16", "-rpcallowip=172.17.0.0/16", "-rpcallowip=192.168.0.0/16", "-rpcport=18333"]
-
-EXPOSE 18333
+EXPOSE ${RPC_PORT}
