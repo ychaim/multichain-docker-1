@@ -8,7 +8,7 @@ ENV WORK_DIR /root
 ENV RPC_PORT 18333
 ENV RPC_USER admin
 ENV RPC_PASSWORD admin
-ENV EXTRA_PARAM "-miningrequirespeers=0"
+ENV EXTRA_PARAM -miningrequirespeers=0
 
 # Set WORKDIR
 WORKDIR ${WORK_DIR}
