@@ -8,4 +8,6 @@ Then set other params:
 
 * `default-rpc-port` to `18337`
 
-Grab user/password from `/root/.multichain/chain1/multichain.conf` using `cat`
+Grab user/password with 
+
+```$ cat /root/.multichain/chain1/multichain.conf```
