@@ -29,7 +29,7 @@ RUN cd /tmp \
 # Multichain setup
 RUN multichain-util create chain1
 
-CMD ["multichaind", "chain1", "-miningrequirespeers=0", "-rpcallowip=10.211.0.0/16", "-rpcallowip=172.17.0.0/16", "-rpcallowip=192.168.0.0/16"]
+CMD ["multichaind", "chain1", "-miningrequirespeers=0", "-rpcallowip=10.211.0.0/16", "-rpcallowip=172.17.0.0/16", "-rpcallowip=192.168.0.0/16", "-rpcport=18333", "-rpcuser=admin", "-rpcpassword=admin"]
 
 EXPOSE ${RPC_PORT}
 
