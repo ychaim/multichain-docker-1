@@ -35,3 +35,5 @@ RUN multichain-util create chain1
 CMD ["multichaind", "chain1", "-rpcallowip=10.211.0.0/16", "-rpcallowip=172.17.0.0/16", "-rpcallowip=192.168.0.0/16"]
 
 EXPOSE ${RPC_PORT}
+
+VOLUME ${WORK_DIR}
