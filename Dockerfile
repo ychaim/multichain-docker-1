@@ -5,20 +5,17 @@ ENV PACKAGE_NAME multichain-1.0-alpha-23
 ENV HOME /root
 ENV WORK_DIR /root
 ENV RPC_PORT 18337
+ENV TERM bash
+ENV DEBIAN_FRONTEND noninteractive
 
-# Set WORKDIR
-WORKDIR ${WORK_DIR}
-
+# Update distro
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get autoremove -y
 RUN apt-get autoclean -y
-RUN apt-get install -y git
-RUN apt-get install -y build-essential
 RUN apt-get install -y wget
 RUN apt-get install -y vim
 RUN apt-get clean -y
-RUN apt-get update
 
 # Multichain install
 RUN cd /tmp \
@@ -30,9 +27,9 @@ RUN cd /tmp \
 	&& rm -Rf multichain*
 
 # Multichain setup
-RUN multichain-util create chain1 
+RUN multichain-util create chain1
 
-CMD ["multichaind", "chain1", "-rpcallowip=10.211.0.0/16", "-rpcallowip=172.17.0.0/16", "-rpcallowip=192.168.0.0/16"]
+CMD ["multichaind", "chain1", "-miningrequirespeers=0", "-rpcallowip=10.211.0.0/16", "-rpcallowip=172.17.0.0/16", "-rpcallowip=192.168.0.0/16"]
 
 EXPOSE ${RPC_PORT}
 
