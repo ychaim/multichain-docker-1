@@ -4,6 +4,7 @@ MAINTAINER Matteo Crippa @ghego20
 ENV PACKAGE_NAME multichain-1.0-alpha-23
 ENV HOME /root
 ENV WORK_DIR /root
+ENV RPC_PORT 18337
 
 # Set WORKDIR
 WORKDIR ${WORK_DIR}
