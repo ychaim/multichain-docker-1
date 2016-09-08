@@ -1,9 +1,11 @@
 # USAGE
 
-This version of `multichain` is auto starting, default data are:
+This version of `multichain` is auto starting, in order to customize edit this file `/root/.multichain/chain1/params.dat`.
 
-* port: 18337
-* user: admin
-* password: admin
+If you plan to have a single server change `allow-multisig-outputs` to `false`.
 
-You can change these values modifying the ENV variables.
+Then set other params:
+
+* `default-rpc-port` to `18337`
+
+Grab user/password from `/root/.multichain/chain1/multichain.conf` using `cat`
