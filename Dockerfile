@@ -5,10 +5,6 @@ ENV PACKAGE_NAME multichain-1.0-alpha-23
 ENV HOME /root
 ENV WORK_DIR /root
 
-ENV RPC_PORT 18333
-ENV RPC_USER admin
-ENV RPC_PASSWORD admin
-
 # Set WORKDIR
 WORKDIR ${WORK_DIR}
 
@@ -35,7 +31,6 @@ RUN cd /tmp \
 # Multichain setup
 RUN multichain-util create chain1 
 
-#ENTRYPOINT [multichaind", "chain1", "-rpcallowip=10.211.0.0/16", "-rpcallowip=172.17.0.0/16", "-rpcallowip=192.168.0.0/16", "-rpcport=${RPC_PORT}", "-rpcuser=${RPC_USER}", "-rpcpassword=${RPC_PASSWORD}", "${EXTRA_PARAMS}"]
-CMD ["multichaind", "chain1", "-rpcallowip=10.211.0.0/16", "-rpcallowip=172.17.0.0/16", "-rpcallowip=192.168.0.0/16", "-rpcport=18333", "-rpcuser=admin", "-rpcpassword=admin", "-miningrequirespeers=0"]
+CMD ["multichaind", "chain1", "-rpcallowip=10.211.0.0/16", "-rpcallowip=172.17.0.0/16", "-rpcallowip=192.168.0.0/16", "-rpcport=18333", "-rpcuser=admin", "-rpcpassword=admin"]
 
 EXPOSE ${RPC_PORT}
